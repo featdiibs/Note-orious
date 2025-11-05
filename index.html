@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pro Web Piano</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Pro Web Piano</h1>
+    <div class="spacer"></div>
+    <button id="themeToggle" class="btn">🌗 Theme</button>
+    <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="controls">
+        <div class="control">
+          <label for="wave">Waveform</label>
+          <select id="wave">
+            <option value="sine">Sine</option>
+            <option value="triangle" selected>Triangle</option>
+            <option value="sawtooth">Saw</option>
+            <option value="square">Square</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <label for="volume">Volume</label>
+          <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7" />
+        </div>
+
+        <div class="control">
+          <label for="attack">Attack (ms)</label>
+          <input id="attack" type="range" min="0" max="800" step="5" value="12" />
+        </div>
+
+        <div class="control">
+          <label for="release">Release (ms)</label>
+          <input id="release" type="range" min="20" max="3000" step="10" value="320" />
+        </div>
+
+        <div class="control">
+          <label for="baseOct">Base Octave</label>
+          <input id="baseOct" type="range" min="2" max="6" step="1" value="4" />
+        </div>
+
+        <div class="control">
+          <label for="octaves">Octaves</label>
+          <select id="octaves">
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+
+        <div class="control row">
+          <input id="sustain" type="checkbox" />
+          <label for="sustain">Sustain</label>
+        </div>
+
+        <div class="control">
+          <label for="velocity">Velocity Mode</label>
+          <select id="velocity">
+            <option value="none">Off</option>
+            <option value="pressure">Pointer pressure</option>
+            <option value="ypos" selected>Key Y-position</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="hint">
+        Keyboard: <span class="kbd">A W S E D F T G Y H U J</span> (C→B) · Hold <span class="kbd">Shift</span> for +1 octave ·
+        Change octaves with <span class="kbd">Z</span>/<span class="kbd">X</span> (base -/+)
+      </div>
+    </section>
+
+    <section class="piano-wrap">
+      <div id="piano" class="piano" aria-label="Piano Keyboard"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Made with Web Audio. Works offline on GitHub Pages.</span>
+  </footer>
+
+  <script src="piano.js"></script>
+</body>
+</html>
