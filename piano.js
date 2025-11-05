@@ -266,6 +266,44 @@
     noteOff('m'+midi);
   });
 
+  // --- MOBILE SAFETY FIXES ---
+
+  // 1. Release all keys if touch ends anywhere on screen
+    window.addEventListener("touchend", () => {
+    for (const k of Array.from(active.keys())) noteOff(k);
+  });
+
+  // 2. Release on touch cancel (happens when scrolling/rotating)
+    window.addEventListener("touchcancel", () => {
+      for (const k of Array.from(active.keys())) noteOff(k);
+  });
+
+  // 3. Release on orientation change
+    window.addEventListener("orientationchange", () => {
+      setTimeout(() => {
+        for (const k of Array.from(active.keys())) noteOff(k);
+      }, 200);
+  });
+
+  // 4. Release when page loses visibility (tab change, app switch)
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        for (const k of Array.from(active.keys())) noteOff(k);
+      }
+  });
+
+  // 5. Emergency failsafe: auto-stop long notes after 3s
+  setInterval(() => {
+    const nowTime = ctx.currentTime;
+      for (const [key, voice] of active) {
+    // if gain is still high for too long, force release
+      if (voice.gain.gain.value > 0.0001) {
+        noteOff(key);
+      }
+    }
+  }, 3000);
+
+
   // ------- Init -------
   buildPiano();
 
