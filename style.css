@@ -93,7 +93,10 @@ h1{ font-size:clamp(18px,3vw,24px); margin:0; }
 
 .piano-wrap{ margin-top: 16px; }
 .piano{
-  position:relative; width:100%; height: min(300px, 55vh);
+  position:relative; width:100%; 
+  height: 40vh;
+  max-height: 300px;
+  min-height: 180px;
   user-select:none; -webkit-user-select:none; touch-action:none;
 }
 
